@@ -1,0 +1,13 @@
+{
+"title" : " To Do App ",
+"setting" : "Settings",
+"list" : "List",
+"add_new_tak" : "Add New Task",
+"enter_task_description" : "Enter Task Description",
+"enter_task_title" : "Enter Task Title",
+"select_date" : "Select Date",
+"add" : "Add",
+"please_enter_task_title" : "Please Enter Task Title",
+"please_enter_task_Description" : "Please Enter Task Description"
+
+}
