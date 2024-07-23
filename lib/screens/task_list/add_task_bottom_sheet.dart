@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/data_classes/app_colors.dart';
+import 'package:todo_app/provider/app_config_provider.dart';
 
 
 class AddTaskBottomSheet extends StatefulWidget {
@@ -14,6 +16,7 @@ var selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Container(
       margin: EdgeInsets.all(20),
       child: SingleChildScrollView(
@@ -40,6 +43,11 @@ var selectedDate = DateTime.now();
                   },
                   decoration: InputDecoration(
                     hintText: AppLocalizations.of(context)!.enter_task_title,
+                    hintStyle: TextStyle(
+                      color: provider.isDarkmode()?
+                          AppColors.grayColor:
+                          AppColors.blackDarkColor
+                    )
                   ),
                 ),
                 SizedBox(height: 10,),
@@ -54,6 +62,11 @@ var selectedDate = DateTime.now();
                   },
                   decoration: InputDecoration(
                     hintText: AppLocalizations.of(context)!.enter_task_description,
+                      hintStyle: TextStyle(
+                          color: provider.isDarkmode()?
+                          AppColors.grayColor:
+                          AppColors.blackDarkColor
+                      )
                   ),
                   maxLines: 5,
                 ),

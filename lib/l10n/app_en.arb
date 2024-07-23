@@ -8,6 +8,13 @@
 "select_date" : "Select Date",
 "add" : "Add",
 "please_enter_task_title" : "Please Enter Task Title",
-"please_enter_task_Description" : "Please Enter Task Description"
+"please_enter_task_Description" : "Please Enter Task Description",
+"language" : "Language",
+"arabic" : "Arabic",
+"english" : "English",
+"theme" : "Theme",
+"dark" : "Dark",
+"light" : "Light"
+
 
 }

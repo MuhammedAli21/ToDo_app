@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/data_classes/app_colors.dart';
+
+import '../../provider/app_config_provider.dart';
 
 class TaskListItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     return Container(
       padding: EdgeInsets.all(12),
       margin: EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: provider.isDarkmode()?
+            AppColors.blackDarkColor:
+            Colors.white,
         borderRadius: BorderRadius.circular(22),
       ),
       child: Row(
@@ -32,7 +39,9 @@ class TaskListItems extends StatelessWidget {
               ),
               Text('Description',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: AppColors.blackColor,)
+                  color: provider.isDarkmode()?
+                  AppColors.whiteColor:
+                  AppColors.blackColor,)
               ),
             ],
           )),

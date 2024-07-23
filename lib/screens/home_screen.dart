@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/data_classes/app_colors.dart';
+import 'package:todo_app/provider/app_config_provider.dart';
 import 'package:todo_app/screens/settings/settings.dart';
 import 'package:todo_app/screens/task_list/task_list.dart';
 import 'package:todo_app/screens/task_list/add_task_bottom_sheet.dart';
@@ -17,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: MediaQuery.of(context).size.height*0.2,
@@ -26,6 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
+        color: provider.isDarkmode()?
+            AppColors.blackDarkColor:
+            AppColors.whiteColor,
         shape: CircularNotchedRectangle(),
         notchMargin: 8,
         child: SingleChildScrollView(
@@ -57,7 +63,10 @@ class _HomeScreenState extends State<HomeScreen> {
           borderRadius: BorderRadius.circular(35),
           side: BorderSide(
               width: 5,
-              color: AppColors.whiteColor),
+              color: provider.isDarkmode()?
+              AppColors.blackDarkColor:
+              AppColors.whiteColor
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

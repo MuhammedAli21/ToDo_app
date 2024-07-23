@@ -8,5 +8,11 @@
 "select_date" : "اختيار التاريخ",
 "add" : "اضافة",
 "please_enter_task_title" : "برجاء ادخل عنوان المهمه",
-"please_enter_task_Description" : "برجاء ادخل تفاصيل المهمه"
+"please_enter_task_Description" : "برجاء ادخل تفاصيل المهمه",
+"language" : "اللغه",
+"arabic" : "العربيه",
+"english" : "الانجليزية",
+"theme" : "النمط",
+"dark" : "ليلي",
+"light" : "مضئ"
 }
