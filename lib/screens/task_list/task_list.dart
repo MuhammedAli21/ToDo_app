@@ -1,17 +1,29 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/data_classes/app_colors.dart';
+import 'package:todo_app/firebase_utils.dart';
 import 'package:todo_app/screens/task_list/task_list_items.dart';
 
+import '../../data_classes/task.dart';
 import '../../provider/app_config_provider.dart';
 
-class TaskList extends StatelessWidget {
+class TaskList extends StatefulWidget {
   static const String routName = "List_screen";
+
+  @override
+  State<TaskList> createState() => _TaskListState();
+}
+
+class _TaskListState extends State<TaskList> {
 
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
+    if(provider.taskList.isEmpty){
+      provider.getAllTasksFromFireStore();
+    }
 
     return  Column(
         children: [
@@ -59,12 +71,13 @@ class TaskList extends StatelessWidget {
           Expanded(
             child: ListView.builder(
                 itemBuilder: (context , index){
-                  return TaskListItems();
+                  return TaskListItems(task: provider.taskList[index],);
                 },
-              itemCount: 30,
+              itemCount: provider.taskList.length,
                 ),
           )
         ],
     );
   }
+
 }

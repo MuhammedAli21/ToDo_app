@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/data_classes/app_colors.dart';
+import 'package:todo_app/data_classes/task.dart';
+import 'package:todo_app/firebase_utils.dart';
 import 'package:todo_app/provider/app_config_provider.dart';
 
 
@@ -13,6 +15,8 @@ class AddTaskBottomSheet extends StatefulWidget {
 class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
 var formKey = GlobalKey<FormState>();
 var selectedDate = DateTime.now();
+var title = '';
+var description = '';
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +45,9 @@ var selectedDate = DateTime.now();
                       return null;
                     }
                   },
+                  onChanged: (text){
+                    title = text;
+                  },
                   decoration: InputDecoration(
                     hintText: AppLocalizations.of(context)!.enter_task_title,
                     hintStyle: TextStyle(
@@ -59,6 +66,9 @@ var selectedDate = DateTime.now();
                     else{
                       return null;
                     }
+                  },
+                  onChanged: (text){
+                    description = text;
                   },
                   decoration: InputDecoration(
                     hintText: AppLocalizations.of(context)!.enter_task_description,
@@ -109,9 +119,17 @@ var selectedDate = DateTime.now();
   }
 
   void addNewTask() {
+    print('this is print bottom');
     if(formKey.currentState?.validate() == null)
       {
         //add Task
+        Task task = Task(
+            title: title,
+            description: description,
+            dateTime: selectedDate,
+        );
+        FirebaseUtils.addTaskToFireStore(task).timeout(Duration(seconds: 2),
+            onTimeout: (){print('task added');});
       }
   }
 
@@ -127,7 +145,6 @@ var selectedDate = DateTime.now();
 
     selectedDate = date ?? selectedDate;
     setState(() {
-
     });
   }
 }

@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/data_classes/app_colors.dart';
 
+import '../../data_classes/task.dart';
 import '../../provider/app_config_provider.dart';
 
 class TaskListItems extends StatelessWidget {
+  Task task;
+  TaskListItems({required this.task});
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +35,14 @@ class TaskListItems extends StatelessWidget {
           Expanded(child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Title',
+              Text(
+                task.title,
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 color: AppColors.blueColor,
               ),
               ),
-              Text('Description',
+              Text(
+                  task.description,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: provider.isDarkmode()?
                   AppColors.whiteColor:

@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/data_classes/app_colors.dart';
 import 'package:todo_app/provider/app_config_provider.dart';
-import 'package:todo_app/screens/settings/settings.dart';
+import 'package:todo_app/screens/settings/settings_screen.dart';
 import 'package:todo_app/screens/task_list/task_list.dart';
 import 'package:todo_app/screens/task_list/add_task_bottom_sheet.dart';
 
@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: screenIndex == 0 ? TaskList() : Settings(),
+      body: screenIndex == 0 ? TaskList() : SettingsScreen(),
     );
   }
 

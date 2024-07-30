@@ -7,14 +7,14 @@ import 'package:todo_app/screens/settings/theme_bottom_sheet.dart';
 
 import '../../provider/app_config_provider.dart';
 
-class Settings extends StatefulWidget {
+class SettingsScreen extends StatefulWidget {
   static const String routName = "Settings_screen";
 
   @override
-  State<Settings> createState() => _SettingsState();
+  State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _SettingsState extends State<Settings> {
+class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
