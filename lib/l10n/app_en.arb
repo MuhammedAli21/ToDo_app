@@ -14,7 +14,11 @@
 "english" : "English",
 "theme" : "Theme",
 "dark" : "Dark",
-"light" : "Light"
+"light" : "Light",
+"edit" : "Edit",
+"delete" : "Delete",
+"delete_message" : "task deleted successfully",
+"add_message" : "task added successfully"
 
 
 }

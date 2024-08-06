@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/data_classes/app_colors.dart';
 import 'package:todo_app/data_classes/task.dart';
 import 'package:todo_app/firebase_utils.dart';
 import 'package:todo_app/provider/app_config_provider.dart';
+import 'package:todo_app/provider/user_provider.dart';
 
 
 class AddTaskBottomSheet extends StatefulWidget {
+  const AddTaskBottomSheet({super.key});
+
   @override
   State<AddTaskBottomSheet> createState() => _AddTaskBottomSheetState();
 }
@@ -17,12 +21,14 @@ var formKey = GlobalKey<FormState>();
 var selectedDate = DateTime.now();
 var title = '';
 var description = '';
+late AppConfigProvider provider;
+
 
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<AppConfigProvider>(context);
+     provider = Provider.of<AppConfigProvider>(context);
     return Container(
-      margin: EdgeInsets.all(20),
+      margin: const EdgeInsets.all(20),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -48,6 +54,7 @@ var description = '';
                   onChanged: (text){
                     title = text;
                   },
+                  style: TextStyle(color: provider.isDarkmode()?AppColors.whiteColor:AppColors.blackDarkColor),
                   decoration: InputDecoration(
                     hintText: AppLocalizations.of(context)!.enter_task_title,
                     hintStyle: TextStyle(
@@ -57,7 +64,7 @@ var description = '';
                     )
                   ),
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 TextFormField(
                   validator: (text){
                     if(text == null || text.isEmpty) {
@@ -70,6 +77,7 @@ var description = '';
                   onChanged: (text){
                     description = text;
                   },
+                  style: TextStyle(color: provider.isDarkmode()?AppColors.whiteColor:AppColors.blackDarkColor),
                   decoration: InputDecoration(
                     hintText: AppLocalizations.of(context)!.enter_task_description,
                       hintStyle: TextStyle(
@@ -119,8 +127,7 @@ var description = '';
   }
 
   void addNewTask() {
-    print('this is print bottom');
-    if(formKey.currentState?.validate() == null)
+    if(formKey.currentState?.validate() == true)
       {
         //add Task
         Task task = Task(
@@ -128,8 +135,36 @@ var description = '';
             description: description,
             dateTime: selectedDate,
         );
-        FirebaseUtils.addTaskToFireStore(task).timeout(Duration(seconds: 2),
-            onTimeout: (){print('task added');});
+        var userProvider = Provider.of<UserProvider>(context,listen: false);
+        var provider = Provider.of<AppConfigProvider>(context,listen: false);
+
+        provider.newDescription = description;
+        provider.newTitle = title;
+        provider.newDate = selectedDate;
+
+        FirebaseUtils.addTaskToFireStore(task,userProvider.currentUser!.id!)
+            .then((value){
+               print('task added');
+               provider.getAllTasksFromFireStore(userProvider.currentUser!.id!);
+               Navigator.pop(context);})
+
+            .timeout(const Duration(seconds: 2),
+            onTimeout: (){
+              print('task added');
+              provider.getAllTasksFromFireStore(userProvider.currentUser!.id!);
+              Navigator.pop(context);
+            });
+
+        Fluttertoast.showToast(
+            msg: AppLocalizations.of(context)!.add_message,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: AppColors.blueColor,
+            textColor: AppColors.whiteColor,
+            fontSize: 16.0
+        );
+
       }
   }
 
@@ -138,7 +173,7 @@ var description = '';
         context: context,
         initialDate: DateTime.now(),
         firstDate:  DateTime.now(),
-        lastDate: DateTime.now().add(Duration(days: 365)));
+        lastDate: DateTime.now().add(const Duration(days: 365)));
   /* if(date != null){
      selectedDate = date ;
    }*/ // OR
@@ -147,4 +182,7 @@ var description = '';
     setState(() {
     });
   }
+
+
+
 }

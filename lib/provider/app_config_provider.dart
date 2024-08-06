@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -6,8 +7,16 @@ import '../firebase_utils.dart';
 
 class AppConfigProvider extends ChangeNotifier{
   String appLanguage = 'en';
-  ThemeMode appTheme = ThemeMode.dark;
+  ThemeMode appTheme = ThemeMode.light;
   List<Task> taskList =[];
+  DateTime selectDate = DateTime.now();
+  bool isDone = false;
+  String newTitle = '';
+  String newDescription = '';
+  DateTime newDate = DateTime.now();
+
+  String testDesc = '';
+  String testTitle = '';
 
 
 
@@ -31,12 +40,34 @@ class AppConfigProvider extends ChangeNotifier{
     return appTheme == ThemeMode.dark;
   }
 
-  void getAllTasksFromFireStore() async {
-    QuerySnapshot<Task> querySnapshot = await FirebaseUtils.getTasksCollection().get();
+  void getAllTasksFromFireStore(String uId) async {
+    QuerySnapshot<Task> querySnapshot = await FirebaseUtils.getTasksCollection(uId).get();
     taskList = querySnapshot.docs.map((doc) {
       return doc.data();
     }).toList();
+
+    //filtering tasks
+    taskList = taskList.where((task) {
+      if(selectDate.day == task.dateTime.day &&
+      selectDate.month == task.dateTime.month &&
+      selectDate.year == task.dateTime.year){
+        return true;
+      }
+      return false;
+    }).toList();
+
+    //sorting tasks
+    taskList.sort((Task task1 , Task task2){
+     return task1.dateTime.compareTo(task2.dateTime);
+    });
+
     notifyListeners();
   }
+
+  void changeSelectDate(DateTime mewSelectData,String uId){
+    selectDate = mewSelectData;
+    getAllTasksFromFireStore(uId);
+  }
+
 
 }

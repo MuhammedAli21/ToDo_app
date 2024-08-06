@@ -1,3 +1,5 @@
+//model data class that convert jason to object and vise versa !!
+
 class Task{
   static const String collectionName = 'tasks';
   String id;

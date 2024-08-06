@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -9,6 +8,8 @@ import '../../provider/app_config_provider.dart';
 
 
 class ThemeBottomSheet extends StatefulWidget {
+  const ThemeBottomSheet({super.key});
+
 
   @override
   State<ThemeBottomSheet> createState() => _ThemeBottomSheetState();
@@ -21,7 +22,7 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
     var provider = Provider.of<AppConfigProvider>(context);
 
     return Container(
-      margin: EdgeInsets.all(20),
+      margin: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -33,7 +34,7 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
             selectedLanguage(AppLocalizations.of(context)!.dark) :
             unSelectedLanguage(AppLocalizations.of(context)!.dark),
           ),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           InkWell(
             onTap: () {
               provider.selectedTheme(ThemeMode.light);

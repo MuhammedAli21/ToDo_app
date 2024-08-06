@@ -46,7 +46,7 @@ class MyThemeData{
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: AppColors.blueColor,
     ),
-    bottomSheetTheme: BottomSheetThemeData(
+    bottomSheetTheme: const BottomSheetThemeData(
 
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -104,7 +104,7 @@ class MyThemeData{
       ),
       bottomSheetTheme: BottomSheetThemeData(
           backgroundColor: AppColors.blackDarkColor,
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30),
               topRight: Radius.circular(30),

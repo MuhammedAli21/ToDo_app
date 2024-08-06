@@ -7,6 +7,8 @@ import '../../provider/app_config_provider.dart';
 
 
 class LanguageBottomSheet extends StatefulWidget {
+  const LanguageBottomSheet({super.key});
+
 
   @override
   State<LanguageBottomSheet> createState() => _LanguageBottomSheetState();
@@ -19,7 +21,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
 
 
     return Container(
-      margin: EdgeInsets.all(20),
+      margin: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -31,7 +33,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
               selectedLanguage(AppLocalizations.of(context)!.english) :
               unSelectedLanguage(AppLocalizations.of(context)!.english),
           ),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           InkWell(
             onTap: () {
               provider.selectedLanguage('ar');

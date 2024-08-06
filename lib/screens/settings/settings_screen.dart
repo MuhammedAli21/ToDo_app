@@ -8,7 +8,9 @@ import 'package:todo_app/screens/settings/theme_bottom_sheet.dart';
 import '../../provider/app_config_provider.dart';
 
 class SettingsScreen extends StatefulWidget {
-  static const String routName = "Settings_screen";
+  static const String routeName = "Settings_screen";
+
+  const SettingsScreen({super.key});
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -20,7 +22,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     var provider = Provider.of<AppConfigProvider>(context);
 
     return Container(
-      margin: EdgeInsets.all(12),
+      margin: const EdgeInsets.all(12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -31,8 +33,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ShowLanguageBottomSheet();
             },
             child: Container(
-              margin: EdgeInsets.all(15),
-              padding: EdgeInsets.all(15),
+              margin: const EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(
                 color: provider.isDarkmode()?
                     AppColors.blackDarkColor:
@@ -50,7 +52,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     AppLocalizations.of(context)!.arabic,
 
                   style: Theme.of(context).textTheme.bodySmall,),
-                  Icon(Icons.arrow_drop_down)
+                  const Icon(Icons.arrow_drop_down)
                 ],
               ),
             ),
@@ -62,8 +64,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ShowThemeBottomSheet();
             },
             child: Container(
-              margin: EdgeInsets.all(15),
-              padding: EdgeInsets.all(15),
+              margin: const EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(
                   color: provider.isDarkmode()?
                       AppColors.blackDarkColor:
@@ -80,7 +82,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   AppLocalizations.of(context)!.dark:
                     AppLocalizations.of(context)!.light,
                     style: Theme.of(context).textTheme.bodySmall,),
-                  Icon(Icons.arrow_drop_down)
+                  const Icon(Icons.arrow_drop_down)
                 ],
               ),
             ),
@@ -96,7 +98,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       isScrollControlled: true,
         backgroundColor: AppColors.blackDarkColor ,
         context: context,
-        builder: (context) => Wrap(children:[LanguageBottomSheet()])
+        builder: (context) => const Wrap(children:[LanguageBottomSheet()])
     );
   }
 
@@ -104,7 +106,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     showModalBottomSheet(
       backgroundColor: AppColors.blackDarkColor,
       context: context,
-      builder: (context) => Wrap(children: [ThemeBottomSheet(),],)
+      builder: (context) => const Wrap(children: [ThemeBottomSheet(),],)
     );
   }
 }
