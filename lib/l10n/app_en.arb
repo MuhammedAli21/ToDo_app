@@ -1,0 +1,24 @@
+{
+"title" : " To Do App ",
+"setting" : "Settings",
+"list" : "List",
+"add_new_tak" : "Add New Task",
+"enter_task_description" : "Enter Task Description",
+"enter_task_title" : "Enter Task Title",
+"select_date" : "Select Date",
+"add" : "Add",
+"please_enter_task_title" : "Please Enter Task Title",
+"please_enter_task_Description" : "Please Enter Task Description",
+"language" : "Language",
+"arabic" : "Arabic",
+"english" : "English",
+"theme" : "Theme",
+"dark" : "Dark",
+"light" : "Light",
+"edit" : "Edit",
+"delete" : "Delete",
+"delete_message" : "task deleted successfully",
+"add_message" : "task added successfully"
+
+
+}

@@ -1,0 +1,18 @@
+flutter_native_splash:
+  color: "#DFECDB"
+  image: assets/images/todo_logo.png
+  branding: assets/images/pranding_splash_screen.png
+  color_dark: "#060E1E"
+  image_dark: assets/images/todo_logo_dark.png
+  branding_dark: assets/images/pranding_splash_screen.png
+
+  android_12:
+    image: assets/images/todo_logo.png
+    icon_background_color: "#DFECDB"
+    image_dark: assets/images/todo_logo_dark.png
+    icon_background_color_dark: "#060E1E"
+    branding: assets/images/pranding_splash_screen.png
+    branding_dark: assets/images/pranding_splash_screen.png
+
+
+  web: false

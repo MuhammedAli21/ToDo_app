@@ -1,0 +1,22 @@
+{
+"title" : " مهام للتنفيذ ",
+"setting" : "الاعدادات",
+"list" : "قائمة المهام",
+"add_new_tak" : "اضافه هدف جديد",
+"enter_task_description" : "اضافة تفاصيل المهام",
+"enter_task_title" : "اضافه عنوان المهمه",
+"select_date" : "اختيار التاريخ",
+"add" : "اضافة",
+"please_enter_task_title" : "برجاء ادخل عنوان المهمه",
+"please_enter_task_Description" : "برجاء ادخل تفاصيل المهمه",
+"language" : "اللغه",
+"arabic" : "العربيه",
+"english" : "الانجليزية",
+"theme" : "النمط",
+"dark" : "ليلي",
+"light" : "مضئ",
+"edit" : "تعديل",
+"delete" : "مسح",
+"delete_message" : "تم مسح المهمه بنجاح",
+"add_message" : "تم اضافه المهمه بنجاح"
+}
